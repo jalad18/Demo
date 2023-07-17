@@ -1,0 +1,35 @@
+<%= form_with model: @property do |form|%>
+    <div>
+        <%= form.label :property_name%>
+        <%= form.text_field :name%>
+    </div>
+
+    <div>
+        <%= form.label :city%>
+        <%= form.text_field :city%>
+    </div>
+
+    <div>
+        <%= form.label :country%>
+        <%= form.text_field :country%>
+    </div>
+
+    <div>
+        <%= form.label :price%>
+        <%= form.number_field :price%>
+    </div>
+
+     <div>
+        <%= form.label :status%>
+        <%= form.select :status, {"For Sale"=> :for_sale, "For Rent"=> :for_rent, "Sold"=>:sold}%>
+    </div>
+
+     <div>
+        <%= form.label :year%>
+        <%= form.number_field :year%>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+<%end%>

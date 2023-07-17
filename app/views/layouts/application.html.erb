@@ -11,6 +11,22 @@
   </head>
 
   <body>
+      <div class="topnav">
+        <a class="active">LuxeLiving</a>
+        <a href="#home">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <% if user_signed_in?%>
+          <%= link_to "Sell", new_property_path%>
+          <%= link_to "Sign Out", destroy_user_session_path, data:{turbo_method: :delete}%>
+        <%end%>
+        <%= link_to "Sign In", new_user_session_path%>
+        <%= link_to "Sign Up", new_user_registration_path%>
+
+    </div>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   </body>
 </html>
