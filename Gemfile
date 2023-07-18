@@ -5,7 +5,7 @@ ruby "2.7.0"
 
 gem "byebug"
 
-#gem "activeadmin"
+#gem 'activeadmin'
 gem "devise"
 
 gem 'sassc'

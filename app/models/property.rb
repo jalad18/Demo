@@ -1,5 +1,5 @@
 class Property < ApplicationRecord
     belongs_to :user
-    enum status: {for_sale:0, for_rent:1, sold:2}
+    enum status: {Sale:0, Rent:1, Sold:2}
 
 end

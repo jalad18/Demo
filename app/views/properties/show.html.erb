@@ -1,9 +1,10 @@
-<h1>Enter Property Details</h1>
-<p><%= @property.name%><p>
-<p><%= @property.city%></p>
-<p><%= @property.country%></p>
-<p><%= @property.price%></p>
-<p><%= @property.status%></p>
-<p><%= @property.year%></p>
+<h1><b>Details of the property</b></h1>
+<p><b>Property name: <%= @property.name%></b><p>
+<p><b>City: <%= @property.city%></b></p>
+<p><b>Country: <%= @property.country%></b></p>
+<p><b>Price: <%= @property.price%>Rs</b></p>
+<p><b>Status: <%= @property.status%></b></p>
+<p><b>Year: <%= @property.year%></b></p>
 
+<%= link_to "Edit", edit_property_path(@property), notice: "Property updated!"%>
 <%= link_to "Delete", property_path(@property), data: {turbo_method: :delete}%>
