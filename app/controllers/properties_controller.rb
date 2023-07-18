@@ -13,13 +13,16 @@ class PropertiesController < ApplicationController
 
     def create
         @property = Property.new(property_params)
+        #byebug
+        @property.user_id = current_user.id
 
         if @property.save
-            redirect_to @property
+          redirect_to properties_path(), notice: "Property created successfully!!"
         else
-            render :new, status: :unprocessable_entity
+          render :new
         end
     end
+      
 
     def edit
         @property = Property.find(params[:id])
@@ -39,11 +42,12 @@ class PropertiesController < ApplicationController
         @property = Property.find(params[:id])
         @property.destroy
 
-        redirect_to properties_path, notice: "Property Deleted!!", status: :see_other
+        redirect_to properties_path(), notice: "Property Deleted!!", status: :see_other
     end
     private
 
     def property_params
-        params.require(:property).permit(:name, :city, :country, :price, :status, :year)
+    params.require(:property).permit(:name, :city, :country, :price, :status, :year)
     end
+
 end
