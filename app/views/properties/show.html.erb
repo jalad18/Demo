@@ -5,6 +5,19 @@
 <p><b>Price: <%= @property.price%>Rs</b></p>
 <p><b>Status: <%= @property.status%></b></p>
 <p><b>Year: <%= @property.year%></b></p>
+<p><b>Owner: <%= @property.user.name%> </b></p>
 
-<%= link_to "Edit", edit_property_path(@property), notice: "Property updated!"%>
-<%= link_to "Delete", property_path(@property), data: {turbo_method: :delete}%>
+<%if user_signed_in? and current_user.id == @property.user_id%>
+    <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!"%>
+    <%= button_to "Delete", property_path(@property), method: :delete%>
+<%end%>
+<% if user_signed_in? and current_user.role =="customer"%>
+    <%if @property.status =="Rent"%>
+        <%= link_to "Rent it!"%>
+        <%= link_to "Add to Favorites"%>
+    <%end%>
+    <%if @property.status =="Sale"%>
+        <%= link_to "Buy it!", class:'join-button'%>
+        <%= link_to "Add to Favorites"%>
+    <%end%>
+<%end%>

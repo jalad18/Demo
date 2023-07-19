@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_18_061710) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_19_105837) do
+  create_table "fav_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "favorite_id"
+    t.integer "property_id"
+    t.index ["favorite_id"], name: "index_fav_items_on_favorite_id"
+    t.index ["property_id"], name: "index_fav_items_on_property_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "city"
     t.string "country"
@@ -21,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_18_061710) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "user_id"
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|

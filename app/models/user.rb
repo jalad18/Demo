@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum role: {customer: 0, agent: 1}
-  has_many :properties
+  has_many :properties, dependent: :destroy
   #validates :role, inclusion: {in: role.keys}
 end

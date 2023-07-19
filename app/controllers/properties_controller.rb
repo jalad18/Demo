@@ -1,4 +1,6 @@
 class PropertiesController < ApplicationController
+    before_action :set_property, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index, :show]
     def index
         @properties = Property.all
     end
@@ -45,7 +47,9 @@ class PropertiesController < ApplicationController
         redirect_to properties_path(), notice: "Property Deleted!!", status: :see_other
     end
     private
-
+    def set_property
+        @property = Property.find(params[:id])
+      end
     def property_params
     params.require(:property).permit(:name, :city, :country, :price, :status, :year)
     end

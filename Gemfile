@@ -37,6 +37,11 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
+gem 'bulma-rails', '~> 0.6.1'
+gem 'simple_form'
+gem 'gravatar_image_tag'
+gem 'carrierwave'
+gem 'mini_magick'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
