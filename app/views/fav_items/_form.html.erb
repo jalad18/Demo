@@ -1,27 +1,12 @@
-<%= form_with(model: fav_item) do |form| %>
-  <% if fav_item.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(fav_item.errors.count, "error") %> prohibited this favorite item from being saved:</h2>
-
-      <ul>
-        <% fav_item.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= simple_form_for(@fav_item) do |f| %>
+  <%= f.error_notification %>
 
   <div>
-    <%= form.label :property_id, style: "display: block" %>
-    <%= form.text_field :property_id %>
+    <%= f.association :property %>
+    <%= f.association :favorite %>
   </div>
 
   <div>
-    <%= form.label :favorite_id, style: "display: block" %>
-    <%= form.text_field :favorite_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= f.button :submit %>
   </div>
 <% end %>

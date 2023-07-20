@@ -1,12 +1,19 @@
-<div>
-  <%= link_to 'Keep Shopping', properties_path%>
-</div>
-<hr />
+<h2>Property show</h2>
+<ul>
+<% if flash[:error] %>
+  <div>
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
 <section>
   <%= render(@favorite.fav_items) %>
-
-  <div>
     <div>
-      <%= button_to 'Empty Cart', @cart, method: :delete%>
+        <%= link_to "Empty cart", favorite_path(@favorite),data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     </div>
 </section>
+
+<div>
+  <%= link_to 'Keep Looking', properties_path%>
+</div>
+<hr />
