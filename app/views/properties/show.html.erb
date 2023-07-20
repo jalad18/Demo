@@ -14,10 +14,10 @@
 <% if user_signed_in? and current_user.role =="customer"%>
     <%if @property.status =="Rent"%>
         <%= link_to "Rent it!"%>
-        <%= link_to "Add to Favorites"%>
+        <%= button_to "Add to Favorites", new_fav_item_path, method: :get%>
     <%end%>
     <%if @property.status =="Sale"%>
         <%= link_to "Buy it!", class:'join-button'%>
-        <%= link_to "Add to Favorites"%>
+        <%= button_to "Add to Favorites"%>
     <%end%>
 <%end%>

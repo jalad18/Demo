@@ -1,0 +1,12 @@
+<div>
+  <%= link_to 'Keep Shopping', properties_path%>
+</div>
+<hr />
+<section>
+  <%= render(@favorite.fav_items) %>
+
+  <div>
+    <div>
+      <%= button_to 'Empty Cart', @cart, method: :delete%>
+    </div>
+</section>
