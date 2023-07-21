@@ -49,9 +49,10 @@ class PropertiesController < ApplicationController
     private
     def set_property
         @property = Property.find(params[:id])
-      end
+    end
+
     def property_params
-    params.require(:property).permit(:name, :city, :country, :price, :status, :year)
+        params.require(:property).permit(:name, :city, :country, :price, :status, :year, images: [])
     end
 
 end

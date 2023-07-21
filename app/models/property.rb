@@ -4,4 +4,5 @@ class Property < ApplicationRecord
     has_many :fav_items, dependent: :destroy
     has_many :reviews, dependent: :destroy
     enum status: {Sale:0, Rent:1, Sold:2}
+    has_many_attached :images
 end

@@ -6,6 +6,11 @@
 <p><b>Status: <%= @property.status%></b></p>
 <p><b>Year: <%= @property.year%></b></p>
 
+<% @property.images.each do |i|%>
+    <%= image_tag(i, style: "width: 300px; height: auto")%>
+<%end%>
+
+
 <p><b>Owner: <%= @property.user.name%> </b></p>
 
 <%if user_signed_in? and current_user.id == @property.user_id%>
