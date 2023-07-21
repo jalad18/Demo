@@ -1,19 +1,13 @@
-<h2>Property show</h2>
-<ul>
-<% if flash[:error] %>
-  <div>
-    <%= flash[:error] %>
-  </div>
-<% end %>
+<h1><b>Favorite property</b></h1>
+<p><b>Property name: <%= @property.name%></b><p>
+<p><b>City: <%= @property.city%></b></p>
+<p><b>Country: <%= @property.country%></b></p>
+<p><b>Price: <%= @property.price%>Rs</b></p>
+<p><b>Status: <%= @property.status%></b></p>
+<p><b>Year: <%= @property.year%></b></p>
+<p><b>Owner: <%= @property.user.name%> </b></p>
 
-<section>
-  <%= render(@favorite.fav_items) %>
-    <div>
-        <%= link_to "Empty cart", favorite_path(@favorite),data: { turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    </div>
-</section>
-
-<div>
-  <%= link_to 'Keep Looking', properties_path%>
-</div>
-<hr />
+<%if user_signed_in? and current_user.id == @property.user_id%>
+    <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!"%>
+    <%= button_to "Delete", property_path(@property), method: :delete%>
+<%end%>

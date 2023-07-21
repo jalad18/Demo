@@ -1,0 +1,13 @@
+<%= form_with model: [@property, @property.reviews.build] do |form|%>
+    <p>
+        <%= form.label :name%><br>
+        <%= form.text_field :name%>
+    </p>
+    <p>
+        <%= form.label :body%><br>
+        <%= form.text_area :body%>
+    </p>
+    <p>
+        <%= form.submit%>
+    </p>
+<%end%>

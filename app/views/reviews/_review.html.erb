@@ -1,0 +1,13 @@
+ <p>
+    <strong>Name:</strong>
+    <%= review.name%>
+</p>
+<p>
+    <strong>Review:</strong>
+    <%= review.body%>
+</p>
+<p>
+    <%# if current_user.name == review.name%>
+        <%= button_to "Destroy Review", [review.property, review], method: :delete %>
+    <%#end%>
+</p>

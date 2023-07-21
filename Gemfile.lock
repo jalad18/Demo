@@ -267,6 +267,7 @@ DEPENDENCIES
   debug
   devise
   gravatar_image_tag
+  image_processing
   importmap-rails
   jbuilder
   mini_magick

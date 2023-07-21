@@ -5,6 +5,7 @@
 <p><b>Price: <%= @property.price%>Rs</b></p>
 <p><b>Status: <%= @property.status%></b></p>
 <p><b>Year: <%= @property.year%></b></p>
+
 <p><b>Owner: <%= @property.user.name%> </b></p>
 
 <%if user_signed_in? and current_user.id == @property.user_id%>
@@ -13,11 +14,14 @@
 <%end%>
 <% if user_signed_in? and current_user.role =="customer"%>
     <%if @property.status =="Rent"%>
-        <%= link_to "Rent it!"%>
-        <%= button_to "Add to Favorites", new_fav_item_path, method: :get%>
+        <%= button_to "Add to Favorites", new_favorite_path, method: :get%>
     <%end%>
     <%if @property.status =="Sale"%>
-        <%= link_to "Buy it!", class:'join-button'%>
-        <%= button_to "Add to Favorites"%>
+        <%= button_to "Add to Favorites", new_favorite_path, method: :get%>
     <%end%>
 <%end%>
+<h2>Reviews</h2>
+<%= render @property.reviews%>
+
+<h2>Add a Review</h2>
+<%= render 'reviews/form'%>
