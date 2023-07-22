@@ -3,6 +3,14 @@ class FavItemsController < ApplicationController
     before_action :set_favorite, only: [:create]
     before_action :set_fav_item, only: %i[show edit update destroy]
 
+    def index
+
+    end
+
+    def show
+
+    end
+    
     private
 
     def set_fav_item
