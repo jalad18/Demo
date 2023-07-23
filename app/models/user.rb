@@ -8,5 +8,11 @@ class User < ApplicationRecord
   has_many :properties, dependent: :destroy
   validates :name, presence: true
   #validates :role, inclusion: {in: role.keys}
+  def favorite?(property)
+    favorites.exists?(property_id: property.id)
+  end
 
+  def favorite(property)
+    favorites.find_by(property_id: property.id)
+  end
 end

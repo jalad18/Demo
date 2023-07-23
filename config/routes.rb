@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :properties do
     resources :reviews
   end
-  resources :favorites
+  resources :favorites, only: [:create, :destroy]
   resources :fav_items
 
   root to: 'application#index'

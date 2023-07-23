@@ -19,10 +19,10 @@
 <%end%>
 <% if user_signed_in? and current_user.role =="customer"%>
     <%if @property.status =="Rent"%>
-        <%= button_to "Add to Favorites", new_favorite_path, method: :get%>
+        <%= button_to "Add to Favorites", favorites_path(property_id: @property.id), method: :post %>
     <%end%>
     <%if @property.status =="Sale"%>
-        <%= button_to "Add to Favorites", new_favorite_path, method: :get%>
+        <%= button_to "Add to Favorites", favorites_path(property_id: @property.id), method: :post %>
     <%end%>
 <%end%>
 <h2>Reviews</h2>
