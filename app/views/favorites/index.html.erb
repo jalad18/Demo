@@ -1,0 +1,13 @@
+<h1>My Favorite Properties</h1>
+<% if current_user.favorites.any? %>
+  <ul>
+    <% current_user.favorites.each do |favorite| %>
+      <li>
+        <%= image_tag("/favorites/#{favorite.property.images.first.filename}", style: "width: 100px; height: auto") %>
+        <%= link_to favorite.property.name, favorite.property %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no favorite properties.</p>
+<% end %>
