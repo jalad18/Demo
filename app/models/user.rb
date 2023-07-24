@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   enum role: {customer: 0, agent: 1}
   has_many :properties, dependent: :destroy
+  has_many :favorites
   validates :name, presence: true
   #validates :role, inclusion: {in: role.keys}
   def favorite?(property)
