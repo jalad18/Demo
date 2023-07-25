@@ -1,6 +1,6 @@
 class FavitemsController < ApplicationController
     before_action :set_favitem, only: %i[show edit update destroy]
-  
+    
     def index
       @favitems = Favitem.all
     end

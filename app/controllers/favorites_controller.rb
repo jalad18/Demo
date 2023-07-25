@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+    
     before_action :set_cart, only:[:show, :destroy]
 
     def show

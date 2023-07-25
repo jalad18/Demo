@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+
     def create
         @property = Property.find(params[:property_id])
         @review = @property.reviews.create(review_params)
