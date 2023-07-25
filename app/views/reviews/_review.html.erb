@@ -7,7 +7,7 @@
     <%= review.body%>
 </p>
 <p>
-    <% if current_user.name == @property.user.name%>
+    <% if current_user.name == @property.user.name || current_user.name == review.name%>
         <%= button_to "Destroy Review", [review.property, review], method: :delete %>
     <%end%>
 </p>

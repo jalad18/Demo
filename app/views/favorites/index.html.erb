@@ -1,13 +1,15 @@
-<h1>My Favorite Properties</h1>
-<% if current_user.favorites.any? %>
+<!-- app/views/favorites/index.html.erb -->
+<h1>My Favorites</h1>
+
+<% if @favorites.any? %>
   <ul>
-    <% current_user.favorites.each do |favorite| %>
+    <% @favorites.each do |favorite| %>
       <li>
-        <%= image_tag("/favorites/#{favorite.property.images.first.filename}", style: "width: 100px; height: auto") %>
         <%= link_to favorite.property.name, favorite.property %>
+        <%= link_to "Remove from favorites", favorite_path(@favorite), method: :delete, data: { confirm: "Are you sure you want to remove this property from favorites?" } %>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p>You have no favorite properties.</p>
+  <p>No properties in favorites yet.</p>
 <% end %>

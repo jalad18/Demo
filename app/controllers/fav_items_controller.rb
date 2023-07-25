@@ -1,66 +1,62 @@
-class FavItemsController < ApplicationController
-    include CurrentCart
-    before_action :set_favorite, only: [:create]
-    before_action :set_fav_item, only: %i[show edit update destroy]
-
+class FavitemsController < ApplicationController
+    before_action :set_favitem, only: %i[show edit update destroy]
+  
     def index
-        @fav_item = FavItem.all
+      @favitems = Favitem.all
     end
-
-    def new
-        @fav_item = FavItem.new
-    end
-
+  
     def show
     end
-
+  
+    def new
+      @favitem = Favitem.new
+    end
+  
     def edit
     end
-
+  
     def create
-        favorite = Favorite.find(params[:favorite_id])
-        @fav_item = @favorite.add_favorite(favorite)
-
-        respond_to do |format|
-            if @fav_item.save
-                format.html {redirect_to @fav_item.favorite, notice: "Property was successfully added."}
-                format.json {render :show, status: :created, location: @fav_item}
+        property = Property.find(params[:property_id])
+        begin
+            @favitem = @favorite.add_item(item)
+            if @favitem.save
+                redirect_to @favitem.property, notice: 'Property added to favorites.'
             else
-                format.html {render :new, status: :unprocessable_entity}
-                format.json {render json: @fav_item.errors, status: :unprocessable_entity}
+                render :new
             end
+        rescue Exception => e
+            redirect_to root_path, notice: e.message
         end
     end
 
     def update
-        respond_to do |format|
-            if @fav_item.update(fav_item_params)
-                format.html {redirect_to fav_item_url(@fav_item), notice: "Fav item was successfully created."}
-                format.json {render :show, status: :ok, location: @fav_item}
-            else
-                format.html {render :edit, status: :unprocessable_entity}
-                format.json {render json: @fav_item.errors, status: :unprocessable_entity}
-            end
+      respond_to do |format|
+        if @favitem.update(favitem_params)
+          format.html { redirect_to @favitem, notice: "Favitem was successfully updated." }
+          format.json { render :show, status: :ok, location: @favitem }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @favitem.errors, status: :unprocessable_entity }
         end
-    end
-
-    def destroy
-        @favorite = Favorite.find(session[:favorite_id])
-        @fav_item.destroy
-
-        respond_to do |format|
-            format.html {redirect_to favorite_path(@favorite), notice: "Fav item was successfully destroyed."}
-            format.json {head :no_content}
-        end
+      end
     end
     
-    private
-
-    def set_fav_item
-        @fav_item = FavItem.find(params[:id])
+    def destroy
+        @favorite = Favorite.find(session[:favorite_id])
+        @favitem = Favitem.find(params[:id])
+        @favitem.destroy
+        redirect_to favorites_path(@favorite)
     end
-
-    def fav_item_params
-        params.require(:fav_item).permit.(:property_id)
+  
+    private
+  
+    def set_favitem
+      @favitem = Favitem.find(params[:id])
+    end
+  
+    # Only allow a list of trusted parameters through.
+    def favitem_params
+      params.require(:favitem).permit(:property_id, :favorite_id)
     end
 end
+  

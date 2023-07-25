@@ -1,0 +1,4 @@
+<%= form_with(model: favorite, remote: true) do |f| %>
+  <%= f.hidden_field :property_id, value: @property.id %>
+  <%= f.submit "Add to Favorites", class: "btn btn-primary" %>
+<% end %>

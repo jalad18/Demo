@@ -1,36 +1,64 @@
 class FavoritesController < ApplicationController
-    #rescue_from ActiveRecord::RecordNotFound, with: :invalid_favorite
-    #before_action :set_favorite, only: [:show, :destroy]
+    rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+    before_action :set_cart, only:[:show, :destroy]
 
-    before_action :authenticate_user!
+    def show
+    end
+
+    def new
+        @favorite = Favorite.new
+    end
+
+    def create
+        @favorite = Favorite.new(favorite_params)
+        if @favorite.save
+            redirect_to favorite_url(@favorite), notice: "Favorite was successfully created!"
+        else
+            render :new
+        end
+    end
+
+    def index
+      @favorites = current_user.favorites
+    end
+  
+    def destroy
+        #session[:cart_id]
+        @favorite.destroy if @favorite.id == session[:favorite_id]
+        session[:favorite_id] = nil
+        redirect_to root_path, notice: 'Favorite property was successfully destroyed.' 
+    end
 
     # def create
-    #     @property = Property.find(params[:property_id])
-    #     current_user.favorites.create(property: @property)
-    
-    #     redirect_to @property, notice: "Added to favorites!"
-    # end
-    
-    # def destroy
-    #     @favorite = current_user.favorites.find(params[:id])
-    #     @property = @favorite.property
-    #     @favorite.destroy
-    
-    #     redirect_to @property, notice: "Removed from favorites!"
-    # end  
-
-    # private
-
-    # def set_favorite
-    #     @favorite = Favorite.find(params[:id])
+    #   @favorite = current_user.favorites.build(favorite_params)
+  
+    #   respond_to do |format|
+    #     if @favorite.save
+    #       format.html { redirect_to @favorite.property, notice: "Property added to favorites." }
+    #       format.json { render :show, status: :created, location: @favorite }
+    #     else
+    #       format.html { redirect_to root_path, alert: "Failed to add property to favorites." }
+    #       format.json { render json: @favorite.errors, status: :unprocessable_entity }
+    #     end
+    #   end
     # end
 
-    # def favorite_params
-    #     params.fetch(:favorite, {})
-    # end
+    private
 
-    # def invalid_favorite
-    #     logger.error "Attempt to access invalid favorite section #{params[:id]}"
-    #     redirect_to root_path, notice: "Favorite section doesn't exist!"
-    # end
+    def set_cart
+        @favorite = Favorite.find(params[:id])
+    end
+
+
+  
+    def favorite_params
+      #params.require(:favorite).permit(:property_id)
+      params.fetch(:favorite, {})
+    end
+
+    def invalid_cart
+        logger.error "Invalid Favorite property #{params[:id]}"
+        redirect_to root_path, notice: "This property never belonged here!"
+    end
 end
+  

@@ -1,3 +1,8 @@
-<% @properties.each do |property|%>
-    <%= link_to property.name, property%>
-<%end%>
+<% @properties.each do |property| %>
+    <% if property.images.attached? %>
+        <% property.images.each do |image| %>
+            <%= image_tag(image, style: "width: auto; height: 250px")%>
+        <% end %>
+    <% end %>
+    <%= link_to property.name, property, class: "btn btn-primary"  %>
+<% end %>

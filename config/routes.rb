@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   resources :properties do
     resources :reviews
   end
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites, only: [:index, :create, :destroy]
   resources :fav_items
 
-  resources :rooms
+  #resources :rooms
   #resources :users, only: [:show]
   #get "user/:id", to: "user#show", as: "user"
 
