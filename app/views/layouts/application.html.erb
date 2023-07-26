@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+      <%= ".msg-#{current_user&.id}" %> {
+      background-color: #007bff !important;
+      padding: 10px;
+      }
+      <%= ".cont-#{current_user&.id}" %> {
+      display: flex;
+        justify-content: flex-end
+      }
+    </style>
   </head>
 
   <body>
@@ -21,7 +30,8 @@
           <%= link_to "Sign Out", destroy_user_session_path, data:{turbo_method: :delete}%>
           <%= link_to "Properties", properties_path%>
           <%= link_to "Account", edit_user_registration_path%>
-          
+          <%= link_to "Group Support", rooms_path%>          
+
         <%end%>
 
         <% if user_signed_in? and current_user.role == "customer"%>
@@ -29,7 +39,7 @@
           <%= link_to "Properties", properties_path%>
           <%= link_to "Favorites", favorites_path%>
           <%= link_to "Account", edit_user_registration_path%>
-
+          <%= link_to "Group Support", rooms_path%>          
           
         <%end%>
     </div>

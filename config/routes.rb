@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+  #get 'room/index'
   devise_for :users, controllers: {registrations: 'registrations'}
+
   resources :properties do
     resources :reviews
   end
   resources :favorites, only: [:index, :create, :destroy]
   resources :fav_items
 
-  #resources :rooms
+  resources :rooms do
+    resources :messages
+  end
+  
   #resources :users, only: [:show]
-  #get "user/:id", to: "user#show", as: "user"
+  get "users/:id", to: "users#show", as: "user"
 
   root to: 'application#index'
 end
