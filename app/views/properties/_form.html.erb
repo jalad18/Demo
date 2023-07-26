@@ -1,39 +1,48 @@
-<%= form_with model: @property do |form|%>
-    <div>
-        <%= form.label :property_name%>
-        <%= form.text_field :name%>
-    </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with model: @property do |form|%>
+        <div class="form-group">
+          <%= form.label :property_name %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
 
-    <div>
-        <%= form.label :city%>
-        <%= form.text_field :city%>
-    </div>
+        <div class="form-group">
+          <%= form.label :city %>
+          <%= form.text_field :city, class: "form-control" %>
+        </div>
 
-    <div>
-        <%= form.label :country%>
-        <%= form.text_field :country%>
-    </div>
+        <div class="form-group">
+          <%= form.label :country %>
+          <%= form.text_field :country, class: "form-control" %>
+        </div>
 
-    <div>
-        <%= form.label :price%>
-        <%= form.number_field :price%>
-    </div>
+        <div class="form-group">
+          <%= form.label :price %>
+          <%= form.number_field :price, class: "form-control" %>
+        </div>
 
-     <div>
-        <%= form.label :status%>
-        <%= form.select :status, {"For Sale"=> :Sale, "For Rent"=> :Rent, "Sold"=>:Sold}%>
-    </div>
+        <div class="form-group">
+          <%= form.label :status %>
+          <%= form.select :status, {"For Sale"=> :Sale, "For Rent"=> :Rent, "Sold"=>:Sold}, {}, class: "form-control" %>
+        </div>
 
-     <div>
-        <%= form.label :year%>
-        <%= form.number_field :year%>
-    </div>
+        <div class="form-group">
+          <%= form.label :year %>
+          <%= form.number_field :year, class: "form-control" %>
+        </div>
+        <br>
 
-    <div>
-        <%= form.file_field :images, multiple: true%>
-    </div>
+        <div class="form-group">
+          <%= form.label :images %>
+          <%= form.file_field :images, multiple: true, class: "form-control-file" %>
+        </div>
+        <br>
 
-    <div>
-        <%= form.submit%>
+        <div class="form-group">
+          <%= form.submit "Submit", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
-<%end%>
+  </div>
+</div>

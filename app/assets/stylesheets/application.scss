@@ -144,3 +144,24 @@
     background-color: #555555;
     padding: 10px;
   }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination a {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+  }
+  
+  .pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+  }

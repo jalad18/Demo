@@ -1,8 +1,8 @@
 <body id="chat_body">
     <div id="chatroom_container" class="row bg-dark text-light">
         <div id="side_panel" class="col-md-4 col-sm-4">
-            <h5> <%= current_user.email %> </h5>
-            <h4> Users </h4>
+            <h4> Hello <span style="color: #E6E6FA"> <%= current_user.name %>!!</span> </h4>
+            <h5> List of users </h5>
             <%= turbo_stream_from "users" %>
             <div id="users">
             <%= render @users %>

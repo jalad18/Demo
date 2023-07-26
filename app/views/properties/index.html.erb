@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding: 75px">
   <div class="row">
     <% @properties.each do |property| %>
       <div class="col-md-4 mb-4">
@@ -7,8 +7,12 @@
             <%= image_tag(image, class: "img-fluid", style: "height: 250px") %>
           <% end %>
         <% end %>
-        <h4 class="mt-2">
+        <h4 class="mt-2">      
           <%= link_to property.name, property, class: "btn btn-primary btn-sm" %>
+          <%= link_to "#{property.price}$", property, class: "btn btn-primary btn-sm" %>
+          <% if current_user.role == 'customer'%>
+            <%= link_to "Contact Now", "#", class: "btn btn-success btn-sm" %>
+          <%end%>
         </h4>
       </div>
     <% end %>
