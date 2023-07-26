@@ -2,7 +2,7 @@ class PropertiesController < ApplicationController
     before_action :set_property, only: [:show, :edit, :update, :destroy]
     before_action :authenticate_user!
     def index
-        @properties = Property.all
+        @properties = Property.all.page(params[:page]).per(3)
     end
 
     def show

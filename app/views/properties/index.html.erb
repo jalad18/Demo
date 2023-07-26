@@ -1,8 +1,18 @@
-<% @properties.each do |property| %>
-    <% if property.images.attached? %>
-        <% property.images.each do |image| %>
-            <%= image_tag(image, style: "width: auto; height: 250px")%>
+<div class="container">
+  <div class="row">
+    <% @properties.each do |property| %>
+      <div class="col-md-4 mb-4">
+        <% if property.images.attached? %>
+          <% property.images.each do |image| %>
+            <%= image_tag(image, class: "img-fluid", style: "height: 250px") %>
+          <% end %>
         <% end %>
+        <h4 class="mt-2">
+          <%= link_to property.name, property, class: "btn btn-primary btn-sm" %>
+        </h4>
+      </div>
     <% end %>
-    <%= link_to property.name, property, class: "btn btn-primary"  %>
-<% end %>
+  </div>
+  <%= paginate @properties%>
+</div>
+
