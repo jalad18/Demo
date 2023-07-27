@@ -2,8 +2,14 @@ class ReviewsController < ApplicationController
 
     def create
         @property = Property.find(params[:property_id])
-        @review = @property.reviews.create(review_params)
-        redirect_to property_path(@property)
+        @review = @property.reviews.build(review_params)
+        @review.user = current_user
+
+        if @review.save
+        redirect_to @property, notice: 'Review was successfully created.'
+        else
+        redirect_to @property, alert: 'Failed to create the review.'
+        end
     end
 
     # def edit

@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
   end
-  
+
+  #get "properties/:id", to: "properties#show"
   #resources :users, only: [:show]
   get "users/:id", to: "users#show", as: "user"
 

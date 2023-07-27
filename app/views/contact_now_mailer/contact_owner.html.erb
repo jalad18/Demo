@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+  <body>
+    <h1>Welcome to Our Application!</h1>
+    <p>Dear <%= current_user.name %>,</p>
+    <p>Thank you for showing interest in our property.</p><br>
+    <p>We are listing you the following details of the owner of this property:</p>
+    <ol>
+        <li>Owner name:  <%= @user.name%></li>
+        <li>Owner name:  <%= @user.email%></li>                
+    </ol>
+    <p> We hope you will find our services useful and we find you a beautiful house.</p><br>
+    <p>Thank You</p>
+    <p><%= Date.today%></p>
+    <!-- Additional content here -->
+  </body>
+</html>

@@ -1,8 +1,13 @@
 class PropertiesController < ApplicationController
     before_action :set_property, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index, :show]
     def index
-        @properties = Property.all.page(params[:page]).per(3)
+        if params[:search].present?
+            search_term = "%#{params[:search]}%"
+            @properties = Property.where('name LIKE ? OR price LIKE ? OR city LIKE ?', search_term, search_term, search_term).page(params[:page]).per(3)
+        else
+            @properties = Property.all.page(params[:page]).per(3)
+        end
     end
 
     def show
@@ -24,8 +29,7 @@ class PropertiesController < ApplicationController
           render :new
         end
     end
-      
-
+    
     def edit
         @property = Property.find(params[:id])
     end

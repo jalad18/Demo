@@ -33,7 +33,8 @@
 
   <h2>Reviews</h2>
   <%= render @property.reviews %>
-
-  <h2>Add a Review</h2>
-  <%= render 'reviews/form' %>
+  <% if current_user.role == 'customer'%>
+    <h2>Add a Review</h2>
+    <%= render 'reviews/form' %>
+  <%end%>
 </div>

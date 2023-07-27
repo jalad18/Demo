@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PropertyConfirmationMailerTest < ActionMailer::TestCase
+class ContactNowMailerTest < ActionMailer::TestCase
   # test "the truth" do
   #   assert true
   # end

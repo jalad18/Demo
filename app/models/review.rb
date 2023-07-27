@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
   belongs_to :property
-  validates :name, presence: true
+  belongs_to :user
+  validates :body, presence: true
 end
