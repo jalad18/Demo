@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
     def index
         if params[:search].present?
             search_term = "%#{params[:search]}%"
-            @properties = Property.where('name LIKE ? OR price LIKE ? OR city LIKE ?', search_term, search_term, search_term).page(params[:page]).per(3)
+            @properties = Property.where('name LIKE ? OR city LIKE ?', search_term, search_term).page(params[:page]).per(3)
         else
             @properties = Property.all.page(params[:page]).per(3)
         end

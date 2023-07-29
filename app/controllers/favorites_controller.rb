@@ -24,25 +24,10 @@ class FavoritesController < ApplicationController
     end
   
     def destroy
-        #session[:cart_id]
         @favorite.destroy if @favorite.id == session[:favorite_id]
         session[:favorite_id] = nil
         redirect_to root_path, notice: 'Favorite property was successfully destroyed.' 
     end
-
-    # def create
-    #   @favorite = current_user.favorites.build(favorite_params)
-  
-    #   respond_to do |format|
-    #     if @favorite.save
-    #       format.html { redirect_to @favorite.property, notice: "Property added to favorites." }
-    #       format.json { render :show, status: :created, location: @favorite }
-    #     else
-    #       format.html { redirect_to root_path, alert: "Failed to add property to favorites." }
-    #       format.json { render json: @favorite.errors, status: :unprocessable_entity }
-    #     end
-    #   end
-    # end
 
     private
 
@@ -53,7 +38,6 @@ class FavoritesController < ApplicationController
 
   
     def favorite_params
-      #params.require(:favorite).permit(:property_id)
       params.fetch(:favorite, {})
     end
 
