@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index, :create, :destroy]
   resources :fav_items
 
+  resources :carts, only: [:show]
+  post '/add_to_cart/:property_id', to: 'carts#add_to_cart', as: 'add_to_cart'
+
+  get '/button_click', to: 'properties#button_click_action', as: 'button_click'
+
   resources :rooms do
     resources :messages
   end

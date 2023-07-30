@@ -32,7 +32,7 @@
           <%= link_to property.name, property, class: "btn btn-primary btn-sm" %>
           <%= link_to "#{property.price}$", property, class: "btn btn-primary btn-sm" %>
           <% if current_user.role == 'customer'%>
-            <%= link_to "Contact Now", "#", class: "btn btn-success btn-sm" %>
+            <%= link_to "Contact Now", button_click_path, class: "btn btn-success btn-sm" %>
           <%end%>
         </h4>
       </div>

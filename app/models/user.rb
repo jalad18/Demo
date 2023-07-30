@@ -12,6 +12,8 @@ class User < ApplicationRecord
   after_create_commit {broadcast_append_to 'users'}
   has_many :messages
 
+  has_many :cart
+
   #validates :role, inclusion: {in: role.keys}
   def favorite?(property)
     favorites.exists?(property_id: property.id)

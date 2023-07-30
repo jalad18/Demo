@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-    before_action :set_property, only: [:show, :edit, :update, :destroy]
+    before_action :set_property, only: [:show, :edit, :update, :destroy, :contact_now]
     before_action :authenticate_user!, except: [:index, :show]
     def index
         if params[:search].present?
@@ -11,7 +11,6 @@ class PropertiesController < ApplicationController
     end
 
     def show
-        @property = Property.find(params[:id])
     end
 
     def new
@@ -31,11 +30,9 @@ class PropertiesController < ApplicationController
     end
     
     def edit
-        @property = Property.find(params[:id])
     end
 
     def update
-        @property = Property.find(params[:id])
 
         if @property.update(property_params)
             redirect_to properties_path(), notice: "Property created!!"
@@ -44,8 +41,13 @@ class PropertiesController < ApplicationController
         end
     end
 
+    def button_click_action
+        @user = current_user 
+        UserMailer.button_click_email(@user).deliver_now
+        redirect_to properties_path(), notice: 'Email sent!'
+    end
+
     def destroy
-        @property = Property.find(params[:id])
         @property.destroy
 
         redirect_to properties_path(), notice: "Property Deleted!!", status: :see_other

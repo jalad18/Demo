@@ -1,11 +1,11 @@
 <div class="container">
   <h1><b>Details of the property</b></h1>
   <p><b>Property name:</b> <%= @property.name %></p>
-  <p><b>City:</b> <%= @property.city %></p>
-  <p><b>Country:</b> <%= @property.country %></p>
-  <p><b>Price:</b> <%= @property.price %> Rs</p>
-  <p><b>Status:</b> <%= @property.status %></p>
-  <p><b>Year:</b> <%= @property.year %></p>
+      <p><b>City:</b> <%= @property.city %></p>
+      <p><b>Country:</b> <%= @property.country %></p>
+      <p><b>Price:</b> <%= @property.price %> Rs</p>
+      <p><b>Status:</b> <%= @property.status %></p>
+      <p><b>Year:</b> <%= @property.year %></p>
 
   <div class="row">
     <% @property.images.each do |image| %>
@@ -15,21 +15,21 @@
     <% end %>
   </div>
 
-  <p><b>Owner:</b> <%= @property.user.name %></p>
+      <p><b>Owner:</b> <%= @property.user.name %></p>
 
-  <% if user_signed_in? && current_user.id == @property.user_id %>
-    <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
-    <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
-  <% end %>
+      <% if user_signed_in? && current_user.id == @property.user_id %>
+        <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
+        <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
+      <% end %>
 
-  <% if user_signed_in? && current_user.role == "customer" %>
+      <% if user_signed_in? && current_user.role == "customer" %>
     <% if @property.status == "Rent" %>
-      <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
-    <% end %>
+          <%= link_to "Add to Favorites", add_to_cart_path(property_id: @property.id), method: :post, class: "btn btn-success" %>
+        <% end %>
     <% if @property.status == "Sale" %>
-      <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
-    <% end %>
-  <% end %>
+      <%= link_to "Add to Favorites", add_to_cart_path(property_id: @property.id), method: :post, class: "btn btn-success" %>
+      <% end %>
+        <% end %>
 
   <h2>Reviews</h2>
   <%= render @property.reviews %>
