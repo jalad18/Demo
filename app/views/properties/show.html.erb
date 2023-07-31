@@ -24,10 +24,10 @@
 
       <% if user_signed_in? && current_user.role == "customer" %>
     <% if @property.status == "Rent" %>
-          <%= link_to "Add to Favorites", add_to_cart_path(property_id: @property.id), method: :post, class: "btn btn-success" %>
+          <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
         <% end %>
     <% if @property.status == "Sale" %>
-      <%= link_to "Add to Favorites", add_to_cart_path(property_id: @property.id), method: :post, class: "btn btn-success" %>
+      <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
       <% end %>
         <% end %>
 

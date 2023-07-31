@@ -23,6 +23,9 @@
   </head>
 
   <body>
+  <div id="google_element">
+  <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+  </div>
       <div class="topnav">
         <%= link_to "LuxeLiving", root_path, class: "active" %>
         <% if user_signed_in? and current_user.role == "agent"%>
@@ -46,5 +49,10 @@
     <%= yield %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("google_element");
+        }
+    </script>
   </body>
 </html>
