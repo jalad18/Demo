@@ -11,6 +11,8 @@ class PropertiesController < ApplicationController
     end
 
     def show
+        @property = Property.find(params[:id])
+        @favorite_properties = current_user.favorites.includes(:property).map(&:property)
     end
 
     def new

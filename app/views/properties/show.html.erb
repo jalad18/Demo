@@ -14,23 +14,19 @@
       </div>
     <% end %>
   </div>
+  <p><b>Owner:</b> <%= @property.user.name %></p>
 
-      <p><b>Owner:</b> <%= @property.user.name %></p>
+    <% if user_signed_in? && current_user.id == @property.user_id %>
+      <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
+      <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
+    <% end %>
 
-      <% if user_signed_in? && current_user.id == @property.user_id %>
-        <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
-        <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
-      <% end %>
+    <% if user_signed_in? and current_user.role =="customer"%>
+      <%= render partial: 'favorites/form', locals: { property: @property } %>
+    <%end%>
 
-      <% if user_signed_in? && current_user.role == "customer" %>
-    <% if @property.status == "Rent" %>
-          <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
-        <% end %>
-    <% if @property.status == "Sale" %>
-      <%= link_to "Add to Favorites", favorites_path, class: "btn btn-success" %>
-      <% end %>
-        <% end %>
 
+  
   <h2>Reviews</h2>
   <%= render @property.reviews %>
   <% if current_user.role == 'customer'%>

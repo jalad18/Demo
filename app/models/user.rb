@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   enum role: {customer: 0, agent: 1}
   has_many :properties, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   validates :name, presence: true
   validates_uniqueness_of :email
   scope :all_except, ->(user) { where.not(id: user) }

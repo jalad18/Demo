@@ -1,49 +1,20 @@
 class FavoritesController < ApplicationController
-    rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
-    
-    before_action :set_cart, only:[:show, :destroy]
+    before_action :authenticate_user!
 
-    def show
-    end
-
-    def new
-        @favorite = Favorite.new
+    def index
+        @favorites = current_user.favorites.includes(:property).map(&:property)
     end
 
     def create
-        @favorite = Favorite.new(favorite_params)
-        if @favorite.save
-            redirect_to favorite_url(@favorite), notice: "Favorite was successfully created!"
-        else
-            render :new
-        end
+        @property = Property.find(params[:property_id])
+        current_user.favorites.create(property: @property)
+        redirect_to @property, notice: "Property added to favorites!"
     end
-
-    def index
-      @favorites = current_user.favorites
-    end
-  
+    
     def destroy
-        @favorite.destroy if @favorite.id == session[:favorite_id]
-        session[:favorite_id] = nil
-        redirect_to root_path, notice: 'Favorite property was successfully destroyed.' 
-    end
-
-    private
-
-    def set_cart
-        @favorite = Favorite.find(params[:id])
-    end
-
-
-  
-    def favorite_params
-      params.fetch(:favorite, {})
-    end
-
-    def invalid_cart
-        logger.error "Invalid Favorite property #{params[:id]}"
-        redirect_to root_path, notice: "This property never belonged here!"
+        @favorite = current_user.favorites.find_by(property_id: params[:property_id])
+        @favorite.destroy if @favorite
+        redirect_to property_path(params[:property_id]), notice: "Property removed from favorites!"
     end
 end
   

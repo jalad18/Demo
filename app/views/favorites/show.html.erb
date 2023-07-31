@@ -1,13 +1,1 @@
-<h1><b>Favorite property</b></h1>
-<p><b>Property name: <%= @property.name%></b><p>
-<p><b>City: <%= @property.city%></b></p>
-<p><b>Country: <%= @property.country%></b></p>
-<p><b>Price: <%= @property.price%>Rs</b></p>
-<p><b>Status: <%= @property.status%></b></p>
-<p><b>Year: <%= @property.year%></b></p>
-<p><b>Owner: <%= @property.user.name%> </b></p>
-
-<%if user_signed_in? and current_user.id == @property.user_id%>
-    <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!"%>
-    <%= button_to "Delete", property_path(@property), method: :delete%>
-<%end%>
+<%= render partial: 'favorites/form', locals: { property: @property } %>

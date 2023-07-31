@@ -13,3 +13,6 @@
 <% else %>
   <p>No properties in favorites yet.</p>
 <% end %>
+<% @favorites.each do |favorite| %>
+  <%= render partial: 'favorites/form', locals: { property: favorite.property } %>
+<% end %>

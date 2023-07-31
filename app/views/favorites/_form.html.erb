@@ -1,4 +1,4 @@
-<%= form_with(model: favorite, remote: true) do |f| %>
-  <%= f.hidden_field :property_id, value: @property.id %>
-  <%= f.submit "Add to Favorites", class: "btn btn-primary" %>
+<%= form_with model: current_user.favorites.new, url: favorites_path do |form| %>
+  <%= form.hidden_field :property_id, value: property.id %>
+      <%= link_to "Add to Favorites", favorites_path(@property_id), class: "btn btn-success" %>
 <% end %>
