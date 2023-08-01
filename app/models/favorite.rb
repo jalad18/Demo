@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Favorite < ApplicationRecord
-    has_many :fav_items, dependent: :destroy
-    belongs_to :user
-    belongs_to :property
+  belongs_to :user
+  belongs_to :property
 end

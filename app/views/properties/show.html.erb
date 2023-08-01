@@ -22,7 +22,7 @@
     <% end %>
 
     <% if user_signed_in? and current_user.role =="customer"%>
-      <%= render partial: 'favorites/form', locals: { property: @property } %>
+      <%= link_to 'Add to Cart', cart_path, method: :post, class: "btn btn-success" %>
     <%end%>
 
 

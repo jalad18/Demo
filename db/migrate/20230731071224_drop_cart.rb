@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropCart < ActiveRecord::Migration[7.0]
   def change
     remove_reference :carts, :user, foreign_key: true
