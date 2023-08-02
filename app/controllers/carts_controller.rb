@@ -1,19 +1,15 @@
 # frozen_string_literal: true
 
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[show checkout]
+  before_action :set_cart
 
   def show
-    @cart_items = @cart&.cart_items&.includes(:property)
+    @cart_items = if @cart
+                    @cart.cart_items.includes(:property)
+                  else
+                    []
+                  end
   end
-
-  # def checkout
-  # Your checkout logic here
-  # Send email to the agent with the cart items and customer details
-  # Clear the cart after successful checkout
-  # Implement your desired behavior for handling the checkout process
-  # redirect_to @cart, notice: 'Checkout complete! An email has been sent to the agent.'
-  # end
 
   private
 

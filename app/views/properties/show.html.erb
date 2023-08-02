@@ -27,6 +27,7 @@
 
     <% if user_signed_in? and current_user.role =="customer"%>
       <%= link_to 'Add to Cart', cart_path, method: :post, class: "btn btn-success" %>
+      <%= link_to "Pay token amount", new_payment_path(property_id: @property.id), class: "btn btn-primary" %>
     <%end%>
 
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :check_customer_role, only: :index
+
   def index
     @users_with_properties = User.includes(:properties).where.not(properties: { id: nil })
   end
@@ -27,6 +29,12 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def check_customer_role
+    return if current_user.role == 'customer'
+
+    redirect_to root_path, alert: 'Access denied. You are not authorized to view this page.'
+  end
 
   def get_name(user1, user2)
     user = [user1, user2].sort

@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
+  resources :payments
+  # post 'payments/create' , on: :member
+  get 'payments/success'
+  get 'payments/cancel'
+
   resources :news, only: [:index]
 
   resources :favorites, only: %i[index create destroy]

@@ -11,6 +11,8 @@ gem 'httparty'
 
 gem 'rubocop-rails'
 
+gem 'stripe'
+
 gem 'dotenv-rails'
 
 gem 'kaminari'
@@ -82,6 +84,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'rails_best_practices'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

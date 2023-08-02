@@ -94,6 +94,8 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    code_analyzer (0.5.5)
+      sexp_processor
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     database_cleaner (2.0.2)
@@ -117,6 +119,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
+    erubis (2.7.0)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -217,6 +220,14 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails_best_practices (1.23.2)
+      activesupport
+      code_analyzer (~> 0.5.5)
+      erubis
+      i18n
+      json
+      require_all (~> 3.0)
+      ruby-progressbar
     railties (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -233,6 +244,7 @@ GEM
     regexp_parser (2.8.1)
     reline (0.3.6)
       io-console (~> 0.5)
+    require_all (3.0.0)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -269,6 +281,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sexp_processor (4.17.0)
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -284,6 +297,7 @@ GEM
     ssrf_filter (1.1.1)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    stripe (8.6.0)
     thor (1.2.2)
     timeout (0.4.0)
     turbo-rails (1.4.0)
@@ -336,6 +350,7 @@ DEPENDENCIES
   mini_magick
   puma (~> 5.0)
   rails (~> 7.0.6)
+  rails_best_practices
   redis (~> 4.0)
   rubocop-rails
   sassc
@@ -344,6 +359,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails
+  stripe
   turbo-rails
   tzinfo-data
   web-console
