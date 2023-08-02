@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= csrf_meta_tags %>
+  <style>
+    body {
+      background-color: #f8f8f8;
+    }
+
+    h1.mb-4 {
+      text-align: center;
+      color: #4285F4;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #4285F4;
+    }
+
+    .list-group-item {
+      border: none;
+      background-color: #f2f2f2;
+      color: #333;
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    .list-group-item:hover {
+      background-color: #e0e0e0;
+    }
+
+    .btn-success {
+      display: block;
+      margin: 0 auto;
+      margin-top: 15px;
+      background-color: #34A853;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-success:hover {
+      background-color: #2E8B57;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="container">
+    <h1 class="mb-4">Agents</h1>
+    <div class="row">
+        <% @users_with_properties.each do |user| %>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title mb-4"><%= user.name.capitalize %></h5>
+                <ul class="list-group list-group-flush flex-grow-1">
+                <% user.properties.each do |property| %>
+                    <li class="list-group-item">
+                    <%= link_to property.name, property_path(property), style: "text-decoration: none; color: #333;" %>
+                    </li>
+                <% end %>
+                </ul>
+                <div class="text-center mt-3">
+                <%= button_to "Contact Now", "#", class: "btn btn-success" %>
+                </div>
+            </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+    </div>
+</body>
+</html>

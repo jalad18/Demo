@@ -3,6 +3,7 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[show edit update destroy contact_now]
   before_action :authenticate_user!, except: %i[index show]
+  load_and_authorize_resource param_method: :my_sanitizer
   def index
     if params[:search].present?
       search_term = "%#{params[:search]}%"
@@ -56,17 +57,6 @@ class PropertiesController < ApplicationController
     UserMailer.button_click_email(@user).deliver_now
     redirect_to properties_path, notice: 'Email sent!'
   end
-  # def button_click_action
-  #     @user = current_user
-  #     @property = Property.find(params[:property_id])
-
-  #     if @property.agent.nil?
-  #       redirect_to properties_path(), alert: 'Property owner email not available.'
-  #     else
-  #       UserMailer.button_click_email(@user, @property.agent).deliver_now
-  #       redirect_to properties_path(), notice: 'Email sent!'
-  #     end
-  # end
 
   def destroy
     @property.destroy
@@ -81,6 +71,10 @@ class PropertiesController < ApplicationController
   end
 
   def property_params
+    params.require(:property).permit(:name, :city, :country, :price, :status, :year, images: [])
+  end
+
+  def my_sanitizer
     params.require(:property).permit(:name, :city, :country, :price, :status, :year, images: [])
   end
 end

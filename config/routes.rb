@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # get 'room/index'
   devise_for :users, controllers: { registrations: 'registrations' }
 
+  get 'users', to: 'users#index', as: :users_with_properties
+
   resources :properties do
     member do
       post :add_to_cart
@@ -17,6 +19,8 @@ Rails.application.routes.draw do
   resources :fav_items
 
   get '/button_click', to: 'properties#button_click_action', as: 'button_click'
+
+  # post 'contact_now/:property_id', to: 'users#contact_now', as: :contact_now
 
   resources :rooms do
     resources :messages

@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  def index
+    @users_with_properties = User.includes(:properties).where.not(properties: { id: nil })
+  end
+
+  # def contact_now
+  #   user = current_user
+  #   property = Property.find(params[:property_id])
+  #   ContactMailer.contact_email(user, property).deliver_now
+  #   redirect_to users_path, notice: 'Email sent!'
+  # end
+
   def show
     @user = User.find(params[:id])
     @users = User.all_except(current_user)

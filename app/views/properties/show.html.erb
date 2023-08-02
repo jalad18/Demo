@@ -17,8 +17,12 @@
   <p><b>Owner:</b> <%= @property.user.name %></p>
 
     <% if user_signed_in? && current_user.id == @property.user_id %>
-      <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
-      <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
+      <% if can? :update, @property%>
+        <%= button_to "Edit", edit_property_path(@property), method: :get, notice: "Property updated!", class: "btn btn-primary" %>
+      <%end%>
+      <%if can? :destroy, @property%>
+        <%= button_to "Delete", property_path(@property), method: :delete, class: "btn btn-danger" %>
+      <%end%>
     <% end %>
 
     <% if user_signed_in? and current_user.role =="customer"%>

@@ -1,16 +1,16 @@
-<h1>Create a new property</h1>
-<%= form_with model: @property do |form| %>
-  <!-- form fields -->
-  <% if @property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
-      <ul>
-        <% @property.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <h1>Create a new property</h1>
+  <%= form_with model: @property do |form| %>
+    <!-- form fields -->
+    <% if @property.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@property.errors.count, "error") %> prohibited this property from being saved:</h2>
+        <ul>
+          <% @property.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <!-- submit button -->
   <% end %>
-  <!-- submit button -->
-<% end %>
-<%= render "form", property: @property%>
+  <%= render "form", property: @property%>

@@ -11,9 +11,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: @user.email, subject: 'Button Click Email')
   end
-  # def button_click_email(user, property_owner)
+
+  # def contact_email(user, property)
   #   @user = user
-  #   @property_owner = property_owner
-  #   mail(to: @property_owner.email, subject: 'Button Click Email')
+  #   @property = property
+  #   mail(to: @user.email, subject: "Contact Now: #{property.name}")
   # end
 end

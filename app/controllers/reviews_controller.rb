@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ReviewsController < ApplicationController
+  load_and_authorize_resource param_method: :review_params
   def create
     @property = Property.find(params[:property_id])
     @review = @property.reviews.build(review_params)
