@@ -19,7 +19,9 @@ class Ability
         can :create, Property
         
     elsif user.role == 'customer'
-        can :manage, Property
+        can :read, Property
+        can :button_click_action, Property
+        can :add_to_cart, Property
 
         can :manage, Review do |review|
             review.user == user
@@ -28,6 +30,7 @@ class Ability
             review.user == user
         end
         can :create, Review
+        can :destroy, Review
     end
 
   end
