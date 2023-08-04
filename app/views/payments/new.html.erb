@@ -1,28 +1,13 @@
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card p-4">
-        <h3 class="mb-4">Payment Details</h3>
-        <form action="<%= payments_path %>" method="post">
-          <%= csrf_meta_tags %>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <!-- Rest of your form content -->
-          <label class="d-block mb-3">
-            Property Name: <%= @property.name%>Rs
-          </label>
-          <label class="d-block mb-3">
-            Amount: <%= (@property.price * 0.1).round(2) %>Rs
-          </label>
+<%= form_tag payments_path do %>
+  <label class="amount">
+      <span>Amount: $5.00</span>
+  </label>
 
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="A month's subscription"
-            data-amount="<%= (@property.price * 0.1 * 100).to_i %>"
-            data-locale="auto">
-          </script>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="A month's subscription"
+    data-amount="500"
+    data-locale="auto">
+  </script>
+<% end %>
