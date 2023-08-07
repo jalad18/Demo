@@ -13,7 +13,7 @@
           <label class="d-block mb-3">
             Amount: <%= (@property.price * 0.1).round(2) %>Rs
           </label>
-
+          
           <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
