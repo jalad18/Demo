@@ -5,18 +5,21 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
 
   get 'users', to: 'users#index', as: :users_with_properties
+  post 'properties/:id/payments', to: 'payments#create', as: 'create'
 
   resources :properties do
+    resources :payments, only: [:show, :new]
     member do
       post :add_to_cart
     end
     resources :reviews
   end
 
-  resources :payments
+
   # post 'payments/create' , on: :member
-  get 'payments/success'
+  get 'payments/success' 
   get 'payments/cancel'
+
 
   resources :news, only: [:index]
 
