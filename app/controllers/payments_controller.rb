@@ -31,6 +31,7 @@ class PaymentsController < ApplicationController
         property_id: @property.id
       }
     )
+    
 
     session = Stripe::Checkout::Session.create(
       payment_intent_data: {
